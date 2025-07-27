@@ -255,15 +255,23 @@
         }
         
         if (urlParams.get('song')) {
-            document.getElementById('song-info').textContent = '"' + urlParams.get('song') + '"' + 
-                (urlParams.get('artist') ? ' by ' + urlParams.get('artist') : '');
-        }
-        
-        if (urlParams.get('warmup')) {
-            document.getElementById('activities-info').textContent = 
-                'Warmup: ' + urlParams.get('warmup') + 
-                (urlParams.get('game') ? ', Game: ' + urlParams.get('game') : '');
-        }
+    document.getElementById('song-info').textContent = '"' + urlParams.get('song') + '"' + 
+        (urlParams.get('artist') ? ' by ' + urlParams.get('artist') : '');
+}
+
+if (urlParams.get('warmup')) {
+    document.getElementById('activities-info').textContent = 
+        'Warmup: ' + urlParams.get('warmup') + 
+        (urlParams.get('game') ? ', Game: ' + urlParams.get('game') : '');
+}
+
+if (urlParams.get('school')) {
+    document.getElementById('school-info').textContent = urlParams.get('school');
+}
+
+if (urlParams.get('group')) {
+    document.getElementById('group-info').textContent = urlParams.get('group');
+}
         
         if (urlParams.get('concepts')) {
             document.getElementById('concepts-info').textContent = urlParams.get('concepts');
