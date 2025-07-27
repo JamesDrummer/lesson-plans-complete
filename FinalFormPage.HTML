@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Lesson Planning Complete</title>
+    <style>
+        /* Use the same CSS from your form trigger node */
+        :root {
+            --font-family: 'Montserrat', sans-serif;
+            --font-weight-normal: 400;
+            --font-weight-bold: 600;
+            --font-size-body: 12px;
+            --font-size-label: 14px;
+            --font-size-input: 14px;
+            --font-size-header: 20px;
+            --font-size-paragraph: 14px;
+            --font-size-html-h1: 28px;
+            --font-size-html-h2: 20px;
+            --font-size-html-h3: 16px;
+
+            /* Colors */
+            --color-background: #fbfcfe;
+            --color-card-bg: #ffffff;
+            --color-card-border: #dbdfe7;
+            --color-card-shadow: rgba(99, 77, 255, 0.06);
+            --color-header: #525356;
+            --color-label: #555555;
+            --color-html-text: #555;
+            --color-html-link: #ff6d5a;
+
+            /* Border Radii */
+            --border-radius-card: 8px;
+            --card-border-radius: 8px;
+
+            /* Spacing */
+            --padding-card: 24px;
+            --margin-bottom-card: 16px;
+            --card-padding: 24px;
+            --card-margin-bottom: 16px;
+
+            /* Others */
+            --box-shadow-card: 0px 4px 16px 0px var(--color-card-shadow);
+        }
+
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            background-color: var(--color-background);
+            font-family: var(--font-family);
+            font-weight: var(--font-weight-normal);
+            color: var(--color-html-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: none !important;
+            width: 100% !important;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+        }
+
+        .success-header {
+            background: #f0f9ff;
+            padding: 25px;
+            border-radius: var(--border-radius-card);
+            margin-bottom: 25px;
+            border: 1px solid #bae6fd;
+            box-shadow: var(--box-shadow-card);
+        }
+
+        .info-section {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--border-radius-card);
+            padding: var(--padding-card);
+            margin: var(--margin-bottom-card) 0;
+            box-shadow: var(--box-shadow-card);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        .restart-section {
+            background: #fef3c7;
+            border: 1px solid #f6dcb7;
+            border-radius: var(--border-radius-card);
+            padding: var(--padding-card);
+            margin: 25px 0;
+            text-align: center;
+            box-shadow: var(--box-shadow-card);
+        }
+
+        .restart-button {
+            display: inline-block;
+            background: #ff6d5a;
+            color: #ffffff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: var(--font-weight-bold);
+            font-size: 16px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .restart-button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        h1 {
+            color: var(--color-header);
+            margin: 0 0 15px 0;
+            font-size: var(--font-size-html-h1);
+            font-weight: var(--font-weight-bold);
+            display: flex;
+            align-items: center;
+        }
+
+        h2 {
+            color: var(--color-header);
+            margin: 0 0 12px 0;
+            font-size: var(--font-size-html-h2);
+            font-weight: var(--font-weight-bold);
+        }
+
+        h3 {
+            color: var(--color-header);
+            margin: 0 0 12px 0;
+            font-size: var(--font-size-html-h3);
+            font-weight: var(--font-weight-bold);
+        }
+
+        p {
+            font-size: var(--font-size-paragraph);
+            line-height: 1.6;
+            margin: 0 0 15px 0;
+            color: var(--color-html-text);
+        }
+
+        a {
+            color: var(--color-html-link);
+            text-decoration: underline;
+        }
+
+        ul, ol {
+            font-size: var(--font-size-paragraph);
+            line-height: 1.8;
+            margin: 0 0 15px 0;
+            padding-left: 20px;
+            color: var(--color-html-text);
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .dynamic-content {
+            font-weight: var(--font-weight-bold);
+            color: #ff6d5a;
+        }
+
+        .footer-section {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-card-border);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-header">
+            <h1>
+                <span style="margin-right: 12px;">🎉</span>
+                <span>Drum Lesson Planning Complete!</span>
+            </h1>
+            <p>Your personalized drum lesson plans have been generated successfully!</p>
+        </div>
+        
+        <div class="grid">
+            <div class="info-section">
+                <h2>📋 What's Been Created</h2>
+                <ul>
+                    <li><span class="dynamic-content" id="lesson-count">Multiple</span> individual lesson plan PDFs</li>
+                    <li><span class="dynamic-content" id="notion-count">Multiple</span> Notion database entries</li>
+                    <li>1 organized Google Drive folder</li>
+                    <li>1 comprehensive term overview document</li>
+                </ul>
+            </div>
+            
+            <div class="info-section">
+                <h2>📊 Generation Summary</h2>
+                <ul>
+                    <li><strong>Song:</strong> <span class="dynamic-content" id="song-info">Custom lesson plans</span></li>
+                    <li><strong>Total Lessons:</strong> <span class="dynamic-content" id="lesson-weeks">Multiple weeks</span> of content</li>
+                    <li><strong>Activities:</strong> <span class="dynamic-content" id="activities-info">Warmup and game activities included</span></li>
+                    <li><strong>Concepts:</strong> <span class="dynamic-content" id="concepts-info">Personalized learning objectives</span></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <h2>🎯 Next Steps</h2>
+            <ol>
+                <li>Check your Google Drive for the organized lesson plan folder</li>
+                <li>Review your Notion database for tracking student progress</li>
+                <li>Access individual PDF lesson plans before each session</li>
+                <li>Use the term overview for planning and preparation</li>
+            </ol>
+            <p><strong>✨ Ready to start teaching amazing drum lessons!</strong></p>
+        </div>
+        
+        <div class="restart-section">
+            <h3>Want to Create More Lesson Plans?</h3>
+            <p>Generate lesson plans for different songs, concepts, or student groups</p>
+            <a href="#" class="restart-button" id="restart-button">Create New Lesson Plans</a>
+        </div>
+        
+        <div class="footer-section">
+            <p><small>Generated with n8n Lesson Planner • <span id="current-date"></span></small></p>
+        </div>
+    </div>
+
+    <script>
+        // Set current date
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString();
+        
+        // Get URL parameters to display dynamic content
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Update content if parameters are provided
+        if (urlParams.get('lessons')) {
+            document.getElementById('lesson-count').textContent = urlParams.get('lessons');
+            document.getElementById('lesson-weeks').textContent = urlParams.get('lessons') + ' weeks';
+        }
+        
+        if (urlParams.get('song')) {
+            document.getElementById('song-info').textContent = '"' + urlParams.get('song') + '"' + 
+                (urlParams.get('artist') ? ' by ' + urlParams.get('artist') : '');
+        }
+        
+        if (urlParams.get('warmup')) {
+            document.getElementById('activities-info').textContent = 
+                'Warmup: ' + urlParams.get('warmup') + 
+                (urlParams.get('game') ? ', Game: ' + urlParams.get('game') : '');
+        }
+        
+        if (urlParams.get('concepts')) {
+            document.getElementById('concepts-info').textContent = urlParams.get('concepts');
+        }
+        
+        // Set restart button to return to form
+        if (urlParams.get('restart_url')) {
+            document.getElementById('restart-button').href = urlParams.get('restart_url');
+        }
+    </script>
+</body>
+</html>
+ 
