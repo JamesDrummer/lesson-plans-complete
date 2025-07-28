@@ -209,16 +209,16 @@
             </div>
             
             <div class="info-section">
-    <h2>📊 Generation Summary</h2>
-    <ul>
-        <li><strong>School:</strong> <span class="dynamic-content" id="school-info">Not specified</span></li>
-        <li><strong>Group:</strong> <span class="dynamic-content" id="group-info">Not specified</span></li>
-        <li><strong>Song:</strong> <span class="dynamic-content" id="song-info">Custom lesson plans</span></li>
-        <li><strong>Total Lessons:</strong> <span class="dynamic-content" id="lesson-weeks">Multiple weeks</span> of content</li>
-        <li><strong>Activities:</strong> <span class="dynamic-content" id="activities-info">Warmup and game activities included</span></li>
-        <li><strong>Concepts:</strong> <span class="dynamic-content" id="concepts-info">Personalized learning objectives</span></li>
-    </ul>
-</div>
+                <h2>📊 Generation Summary</h2>
+                <ul>
+                    <li><strong>School:</strong> <span class="dynamic-content" id="school-info">Not specified</span></li>
+                    <li><strong>Group:</strong> <span class="dynamic-content" id="group-info">Not specified</span></li>
+                    <li><strong>Song:</strong> <span class="dynamic-content" id="song-info">Custom lesson plans</span></li>
+                    <li><strong>Total Lessons:</strong> <span class="dynamic-content" id="lesson-weeks">Multiple weeks</span> of content</li>
+                    <li><strong>Activities:</strong> <span class="dynamic-content" id="activities-info">Warmup and game activities included</span></li>
+                    <li><strong>Concepts:</strong> <span class="dynamic-content" id="concepts-info">Personalized learning objectives</span></li>
+                </ul>
+            </div>
         </div>
         
         <div class="info-section">
@@ -250,40 +250,78 @@
         // Get URL parameters to display dynamic content
         const urlParams = new URLSearchParams(window.location.search);
         
-        // Update content if parameters are provided
-        if (urlParams.get('lessons')) {
-            document.getElementById('lesson-count').textContent = urlParams.get('lessons');
-            document.getElementById('lesson-weeks').textContent = urlParams.get('lessons') + ' weeks';
+        // Function to safely get parameter with fallback
+        function getParam(key, fallback = '') {
+            const value = urlParams.get(key);
+            return value && value.trim() !== '' ? value : fallback;
         }
         
-        if (urlParams.get('song')) {
-    document.getElementById('song-info').textContent = '"' + urlParams.get('song') + '"' + 
-        (urlParams.get('artist') ? ' by ' + urlParams.get('artist') : '');
-}
-
-if (urlParams.get('warmup')) {
-    document.getElementById('activities-info').textContent = 
-        'Warmup: ' + urlParams.get('warmup') + 
-        (urlParams.get('game') ? ', Game: ' + urlParams.get('game') : '');
-}
-
-if (urlParams.get('school')) {
-    document.getElementById('school-info').textContent = urlParams.get('school');
-}
-
-if (urlParams.get('group')) {
-    document.getElementById('group-info').textContent = urlParams.get('group');
-}
-        
-        if (urlParams.get('concepts')) {
-            document.getElementById('concepts-info').textContent = urlParams.get('concepts');
+        // Update lesson count and related fields
+        const lessonsParam = getParam('lessons');
+        if (lessonsParam && !isNaN(parseInt(lessonsParam))) {
+            const lessonCount = parseInt(lessonsParam);
+            document.getElementById('lesson-count').textContent = lessonCount;
+            document.getElementById('lesson-weeks').textContent = lessonCount + ' weeks';
         }
         
-        // Set restart button to return to form
-        if (urlParams.get('restart_url')) {
-            document.getElementById('restart-button').href = urlParams.get('restart_url');
+        // Update Notion count - use lessons parameter or notion_count parameter
+        const notionCountParam = getParam('notion_count') || lessonsParam;
+        if (notionCountParam && !isNaN(parseInt(notionCountParam))) {
+            document.getElementById('notion-count').textContent = parseInt(notionCountParam);
         }
+        
+        // Update song information
+        const songParam = getParam('song');
+        const artistParam = getParam('artist');
+        if (songParam) {
+            let songText = '"' + songParam + '"';
+            if (artistParam) {
+                songText += ' by ' + artistParam;
+            }
+            document.getElementById('song-info').textContent = songText;
+        }
+
+        // Update activities information
+        const warmupParam = getParam('warmup');
+        const gameParam = getParam('game');
+        if (warmupParam || gameParam) {
+            let activitiesText = '';
+            if (warmupParam) {
+                activitiesText += 'Warmup: ' + warmupParam;
+            }
+            if (gameParam && gameParam !== 'No Game' && gameParam !== 'undefined') {
+                if (activitiesText) activitiesText += ', ';
+                activitiesText += 'Game: ' + gameParam;
+            }
+            if (activitiesText) {
+                document.getElementById('activities-info').textContent = activitiesText;
+            }
+        }
+
+        // Update school information
+        const schoolParam = getParam('school');
+        if (schoolParam) {
+            document.getElementById('school-info').textContent = schoolParam;
+        }
+
+        // Update group information
+        const groupParam = getParam('group');
+        if (groupParam) {
+            document.getElementById('group-info').textContent = groupParam;
+        }
+        
+        // Update concepts information - THIS FIXES THE MAIN ISSUE
+        const conceptsParam = getParam('concepts');
+        if (conceptsParam) {
+            document.getElementById('concepts-info').textContent = conceptsParam;
+        }
+        
+        // Set restart button to return to form (you can customize this URL)
+        const restartUrl = getParam('restart_url') || window.location.origin + '/'; // Fallback to homepage
+        document.getElementById('restart-button').href = restartUrl;
+        
+        // Debug: Log all parameters for troubleshooting
+        console.log('URL Parameters received:', Object.fromEntries(urlParams.entries()));
     </script>
 </body>
 </html>
- 
